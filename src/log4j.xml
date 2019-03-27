@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration PUBLIC "" "log4j.dtd">
+
+<log4j:configuration>
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+ 		<param name="Threshold" value="INFO" />
+        <param name="Target" value="System.out"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{ISO8601}] %-5p %c %m %n"></param>
+        </layout>
+    </appender>
+
+    <!--
+        Uncomment this appender if you wish to log into a file. Check the file
+        location before uncommenting.
+    -->
+    <appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="Threshold" value="INFO" />
+        <!-- param name="File" value="c:/Logs/GetParkServiceRest.log"/-->
+        <param name="File" value="/home/marcelo/testeionic/GetParkServiceRest.log"/>
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="10024KB"/>
+        <param name="MaxBackupIndex" value="2"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{ISO8601}] %-5p %c %m %n"></param>
+        </layout>
+    </appender>
+
+        <appender name="FILE_ERROR" class="org.apache.log4j.RollingFileAppender">
+        <param name="Threshold" value="ERROR" />
+        <!-- param name="File" value="c:/Logs/GetParkServiceRest_ERROR.log"/-->
+        <param name="File" value="/home/marcelo/testeionic/GetParkServiceRest_ERROR.log"/>
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="10024KB"/>
+        <param name="MaxBackupIndex" value="2"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{ISO8601}] %-5p %c %m %n"></param>
+        </layout>
+    </appender>
+  
+ <!--  <logger name="org.hibernate">
+    <level value="ALL" />
+    <appender-ref ref="STDOUT"/>
+</logger>-->
+
+ 
+<category name="org.hibernate.SQL" additivity="false">
+    <appender-ref ref="FILE"/>
+</category>
+  
+    <root>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE_ERROR" />
+    </root>
+</log4j:configuration>
